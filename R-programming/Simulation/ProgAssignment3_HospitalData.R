@@ -24,17 +24,31 @@ tapply(outcome$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, outcom
 
 best <- function(state, disease) {
       ## Read outcome data
+      outcome <- read.csv("rprog_data_ProgAssignment3-data/outcome-of-care-measures.csv", na.strings = c("NA", "Not Available"), stringsAsFactors=FALSE )
+      
+      ## Check that state and outcome are valid
       # I dont worry about matching the string, upper/lower case etc. (use tidyverse str_detect for that)
-      out_vals <- data.frame(c("heart attack", "heart failure", "pneumonia"), c(11, 17, 23))
-      col <- for (i in 1:ncol(out_vals)) {
-            if (identical(as.character(out_vals[ i, 1]), disease)){
-                  out_vals[i , 2]  
+      stopifnot(state, disease)
+      out_state <- subset(outcome, outcome$State == state, drop = TRUE)
+      
+      
+      
+      
+      
+      
+      
+      out_vals <- data.frame(disease = c("heart attack", "heart failure", "pneumonia"), colnum = c(11, 17, 23))
+      for (i in 1:nrow(out_vals)) {
+            if (identical(as.character(out_vals[i, 1]), "heart failure")){
+               col <- out_vals[i , 2]  
             }
+         return(col)
       }
+      
+      
       out_data <- outcome[ , col]
 
-      ## Check that state and outcome are valid
-      
       ## Return hospital name in that state with lowest 30-day death
       ## rate
+      split()
 }
