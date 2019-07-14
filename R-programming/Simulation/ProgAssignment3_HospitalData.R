@@ -1,7 +1,7 @@
 ### 1. Plot the 30-day mortality rates for heart attack
 
 #Read the outcome data into R via the read.csv function and look at the rst few rows.
-outcome <- read.csv("rprog_data_ProgAssignment3-data/outcome-of-care-measures.csv", colClasses = "character")
+outcome <- read.csv("~/R_Bootcamp/datasciencecoursera/R-programming/Simulation/rprog_data_ProgAssignment3-data/outcome-of-care-measures.csv", colClasses = "character")
 head(outcome)
 
 str(outcome)
@@ -22,33 +22,4 @@ hist(outcome[, 11])
 table(outcome$State)
 tapply(outcome$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, outcome$State, min, na.rm = TRUE)
 
-best <- function(state, disease) {
-      ## Read outcome data
-      outcome <- read.csv("rprog_data_ProgAssignment3-data/outcome-of-care-measures.csv", na.strings = c("NA", "Not Available"), stringsAsFactors=FALSE )
-      
-      ## Check that state and outcome are valid
-      # I dont worry about matching the string, upper/lower case etc. (use tidyverse str_detect for that)
-      stopifnot(state, disease)
-      out_state <- subset(outcome, outcome$State == state, drop = TRUE)
-      
-      
-      
-      
-      
-      
-      
-      out_vals <- data.frame(disease = c("heart attack", "heart failure", "pneumonia"), colnum = c(11, 17, 23))
-      for (i in 1:nrow(out_vals)) {
-            if (identical(as.character(out_vals[i, 1]), "heart failure")){
-               col <- out_vals[i , 2]  
-            }
-         return(col)
-      }
-      
-      
-      out_data <- outcome[ , col]
-
-      ## Return hospital name in that state with lowest 30-day death
-      ## rate
-      split()
-}
+##See file best.R
