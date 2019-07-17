@@ -60,3 +60,14 @@ prop.table(t1, 1) #1 for proportion across rows, 2 for col
 
 qplot(wage, colour=education , data = training, geom = "density")
 qplot(wage, colour=race , data = training, geom = "density")
+
+#Fit non-linear model
+library("splines")
+bsBasis <- bs(training$age, df =3)
+
+lm1 <- lm(wage~ bsBasis, data=training)
+plot(training$age, training$wage, pch=19, cex=0.5)
+points(training$age, predict(lm1, newdata = training), col="red", pch=19, cex=0.5)
+
+#Splines on the test set
+test_spine <- predict(bsBasis,newx=testing$age)
