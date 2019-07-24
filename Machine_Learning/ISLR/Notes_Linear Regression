@@ -1,0 +1,63 @@
+###Notes on Linear Regression **ISLR***
+
+##When we perform multiple linear regression, we usually are interestedin answering a few important questions.
+1. Is at least one of the predictors X1,X2, . . . , Xp useful in predicting
+the response?
+2. Do all the predictors help to explain Y , or is only a subset of the
+predictors useful?
+3. How well does the model fit the data?
+4. Given a set of predictor values, what response value should we predict,
+and how accurate is our prediction?
+
+##1: Is There a Relationship Between the Response and Predictors?
+
+Test null hypothesis H0 : β1 = β2 = · · · = βp = 0
+
+**Hypothesis test with F-statistic, >1, 
+Larger F with smaller p value for F, the higher the confidence
+**p-values for each predictor are significant 
+(Caveat: we expect to see approximately 5% small p-values even in the absence of any true association between the predictors and the response. F-statistic adjusts for the number of predictors)
+
+For large number of predictors, if p>n these concepts cannot be used; check ch.6
+
+##2. Deciding on Important Variables
+
+**Total of 2^p models that contain subsets of p variables. How to decide which model is correct, even for moderate p?
+
+**Varible selection (ch 6), reducing dimensionality, similar predictors, PCA
+
+*Forward selection. We begin with the null model—a model that contains an intercept but no predictors. We then fit p simple linear regressions and add to the null model the variable that results in the lowest RSS.
+*Backward selection. We start with all variables in the model, and
+backward remove the variable with the largest p-value
+**Mixed selection. perform these forward and backward steps until all variables in the model have a sufficiently low p-value, and all variables outside the model would have a large p-value if added to the model
+
+##3. Model Fit
+Recall that in simple regression, R2 is the square of the correlation of the response and the variable. In multiple linear regression, it turns out that it equals Cor(Y, ^Y )2, the square of the correlation between the response and the fitted linear model
+
+Notice changes in RSE in models as you add new predictors.  Remove predictors that lead to small changes in RSE.
+
+##4. Predictions
+
+We use a confidence interval to quantify the uncertainty surrounding
+confidence the average sales over a large number of cities.
+
+A prediction interval can be used to quantify the
+prediction uncertainty surrounding sales for a particular city
+
+Confidence/prediction intervals: 95% of intervals of this form will contain the true value of F(x)/Y resptively.
+
+Predictionintervals are always wider than confidence intervals, because they incorporate both the error in the estimate for f(X) (the reducible error) and the uncertainty as to how much an individual point will differ from the population regression plane (the irreducible error).
+
+
+***Including non-linear (quadratic) relationships and interactions between variables (non-additive)
+
+##Potential Problems
+When we fit a linear regression model to a particular data set, many problems
+may occur. Most common among these are the following:
+1. Non-linearity of the response-predictor relationships.
+2. Correlation of error terms.
+3. Non-constant variance of error terms.
+4. Outliers.
+5. High-leverage points.
+6. Collinearity.
+
